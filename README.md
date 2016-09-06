@@ -6,9 +6,10 @@ fight against window "the source filename are larger than is supported by the fi
 
 RUN:
 
-$ node delete_folder
+$ node delete_folder.js
 
 Flags:
+
 test - if set to true, it will use the "root_dir" value
        if set to false, it will use the command param:
        example: $ node delete_folder D://test
