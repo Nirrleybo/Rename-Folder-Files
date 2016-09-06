@@ -5,7 +5,7 @@ fight against window "the source filename are larger than is supported by the fi
 This script does not delete files \ folders! it will only change the folder & files names of the parent folder content.
 The idea is to change all the files and folders names so we could be able to delete it.
 
-# make sure u have node install.
+make sure u have node install.
 
 1. download the js file.
 2. run it:
