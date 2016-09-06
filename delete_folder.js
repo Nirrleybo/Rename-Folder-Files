@@ -1,20 +1,3 @@
-/*************************************/
-/***** Insert Root Folder Here *******/
-/*************************************/
-var root_dir = "";
-
-/* Change to true to enable script */
-var is_on = 1; // <-- Change to true !
-
-/** 
-* true - use "root_dir" var (above) content
-* false - to use cmd param 
-*/
-var test = false; 
-
-
-
-
 const fs = require('fs');
 const path = require("path");
 
@@ -23,12 +6,10 @@ main();
 
 
 function main(){
-	if (!is_on) return;
 	try{
 		console.log("Start...");
 		var args = getArgs();
 		var root_path = args ? args.root_path : null;
-		if (test) root_path = root_dir;
 		if (root_path) {
 			deleteFolder(root_path, []);
 			console.log("Done !");
@@ -48,6 +29,7 @@ function deleteFolder(dir){
 	    for(var i in files){
 	        if (!files.hasOwnProperty(i)) continue;
 	        var path = dir+'/'+files[i];
+	        console.log("path: " + path);
 	        if (fs.statSync(path).isDirectory()){
 	            deleteFolder(path);
 	        } 
@@ -61,7 +43,6 @@ function deleteFolder(dir){
 }
 
 function changeFileName(oldPath, newName){
-	// fs.rename(old,new,callback)
 	try{
 		var dir = path.dirname(oldPath);
 		fs.renameSync(oldPath, dir + "/" + newName);
@@ -72,16 +53,12 @@ function changeFileName(oldPath, newName){
 
 function getArgs(){
 	var args = {};
-	if (process && process.argv[0]) {
-		args.root_path = process.argv[0];
+	if (process && process.argv[2]) {
+		args.root_path = process.argv[2];
 	}
 	else{
 		console.log("No root dir");
 		args = null;
 	}
-	// print process.argv
-	// process.argv.forEach(function (val, index, array) {
-	//   console.log(index + ': ' + val);
-	// });
 	return args;
 }
